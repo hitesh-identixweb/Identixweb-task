@@ -26,10 +26,10 @@ pipeline {
 
                         sh( '''
 
-                            ssh -o StrictHostKeyChecking=no -i ${SERVER_KEY} ${SERVER_USER}@${SERVER_HOST} "
+                            ssh -o StrictHostKeyChecking=no -i ${SERVER_KEY} -tt ${SERVER_USER}@${SERVER_HOST} '
                                 echo ${env.BUILD_NUMBER}
                                 echo 222222222222222222222222222222222
-                            "
+                            '
                         '''
                         )
                     }
