@@ -12,18 +12,13 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    def buildNumber = env.BUILD_NUMBER
-                    def imageTag = "taskimage:${buildNumber}"
-                    sh "docker build -t ${imageTag} ."
+                    sh "docker build -t taskimage:${env.BUILD_NUMBER} ."
                 }
             }
         }
         stage('Update Swarm Service') {
             steps {
                 script {
-
-                    def buildNumber = env.BUILD_NUMBER
-                    def imageTag = "taskimage:${buildNumber}"
 
                     withCredentials([
                         sshUserPrivateKey(credentialsId: "SERVER_USER_KEY",  usernameVariable: 'SERVER_USER', keyFileVariable: 'SERVER_KEY'),
@@ -34,7 +29,7 @@ pipeline {
                             ssh -o StrictHostKeyChecking=no -i ${SERVER_KEY} -tt ${SERVER_USER}@${SERVER_HOST} <<-EOF
 
                                 # Deploy stack
-                                docker service update --image ${imageTag} mytask
+                                docker service update --image taskimage:${env.BUILD_NUMBER} mytask
 
                                 exit
 
@@ -46,7 +41,4 @@ pipeline {
         }
     }
 }
-
-
-
 
