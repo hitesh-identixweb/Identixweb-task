@@ -27,9 +27,7 @@ pipeline {
                         sh( '''
 
                             ssh -o StrictHostKeyChecking=no -i ${SERVER_KEY} -tt ${SERVER_USER}@${SERVER_HOST} <<-EOF
-                                echo 0000000000000000000000000000000000
-                                echo "${BUILD_NUMBER}"
-                                echo 222222222222222222222222222222222
+                                docker service update --image taskimage:${env.BUILD_NUMBER} mytask
                                 exit
                             EOF
                         '''
