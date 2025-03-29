@@ -30,6 +30,14 @@ sh('echo "======================="')
 
                         sh('echo okokokokok')
 
+                        sh( '''
+
+                            echo okok
+                            echo 222222222222222
+
+                        '''
+                        )
+
                         // sh ('ssh -o StrictHostKeyChecking=no -tt ${SERVER_USER}@${env.SERVER_HOST} ls -a')
 
                         sh('echo 11111111111111111111111111111111111')
