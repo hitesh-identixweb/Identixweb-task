@@ -32,8 +32,8 @@ sh('echo "======================="')
 
                         sh( '''
 
-                            echo okok
-                            echo 222222222222222
+                            echo ${SERVER_USER}
+                            echo ${SERVER_KEY}
 
                         '''
                         )
