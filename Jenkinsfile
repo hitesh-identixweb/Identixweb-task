@@ -21,7 +21,7 @@ pipeline {
                 script {
 
 
-sh('echoo "======================="')
+sh('echo "======================="')
 
 
                     withCredentials([
