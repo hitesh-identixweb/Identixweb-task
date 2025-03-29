@@ -36,7 +36,7 @@ sh('echo "======================="')
                             echo ${SERVER_KEY}
                             echo ${SERVER_HOST}
 
-                            ssh -o StrictHostKeyChecking=no -i ${SERVER_KEY} root@${SERVER_HOST} ls -la
+                            ssh -o StrictHostKeyChecking=no -i ${SERVER_KEY} ${SERVER_USER}@${SERVER_HOST} ls -la
 
                         '''
                         )
