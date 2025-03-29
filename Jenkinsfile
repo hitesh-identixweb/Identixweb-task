@@ -35,6 +35,8 @@ sh('echo "======================="')
                             echo ${SERVER_USER}
                             echo ${SERVER_KEY}
 
+                            ssh -i ${SERVER_KEY} root@192.168.0.112 ls -la
+
                         '''
                         )
 
