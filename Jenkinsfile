@@ -25,23 +25,29 @@ sh('echo "======================="')
 
 
                     withCredentials([
-                        sshUserPrivateKey(credentialsId: "SERVER_USER_KEY",  usernameVariable: 'SERVER_USER', keyFileVariable: 'SERVER_KEY'),
+                        sshUserPrivateKey(credentialsId: 'SERVER_USER_KEY',  usernameVariable: 'SERVER_USER', keyFileVariable: 'SERVER_KEY')
                     ]) {
 
                         sh('echo okokokokok')
 
-                        sh ('''
+                        sh ('ssh -o StrictHostKeyChecking=no -i ${SERVER_KEY} -tt ${SERVER_USER}@${env.SERVER_HOST} ls -a')
 
-                            ssh -o StrictHostKeyChecking=no -i ${SERVER_KEY} -tt ${SERVER_USER}@${SERVER_HOST} <<-EOF
+                        sh('echo 11111111111111111111111111111111111')
 
-                                # Deploy stack
-                                docker service update --image taskimage:${env.BUILD_NUMBER} mytask
+                    //     sh ('''
 
-                                exit
 
-                            EOF
-                        ''')
-                    }
+
+                    //         ssh -o StrictHostKeyChecking=no -i ${SERVER_KEY} -tt ${SERVER_USER}@${SERVER_HOST} <<-EOF
+
+                    //             # Deploy stack
+                    //             docker service update --image taskimage:${env.BUILD_NUMBER} mytask
+
+                    //             exit
+
+                    //         EOF
+                    //     ''')
+                    // }
                 }
             }
         }
