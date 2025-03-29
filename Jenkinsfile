@@ -20,16 +20,10 @@ pipeline {
             steps {
                 script {
 
-
-sh('echo "======================="')
-
-
                     withCredentials([
                         sshUserPrivateKey(credentialsId: 'SERVER_USER_KEY',  usernameVariable: 'SERVER_USER', keyFileVariable: 'SERVER_KEY')
                     ]) {
-
-                        sh('echo okokokokok')
-
+                        
                         sh( '''
 
                             echo ${SERVER_USER}
@@ -37,32 +31,10 @@ sh('echo "======================="')
                             echo ${SERVER_HOST}
 
                             ssh -o StrictHostKeyChecking=no -i ${SERVER_KEY} ${SERVER_USER}@${SERVER_HOST} '
-                                ls -la
-                                pwd
+                                docker service update --image taskimage:${env.BUILD_NUMBER} mytask
                             '
-
-                            # ssh -o StrictHostKeyChecking=no -i ${SERVER_KEY} ${SERVER_USER}@${SERVER_HOST} ls -la
-
                         '''
                         )
-
-                        // sh ('ssh -o StrictHostKeyChecking=no -tt ${SERVER_USER}@${env.SERVER_HOST} ls -a')
-
-                        sh('echo 11111111111111111111111111111111111')
-
-                    //     sh ('''
-
-
-
-                    //         ssh -o StrictHostKeyChecking=no -i ${SERVER_KEY} -tt ${SERVER_USER}@${SERVER_HOST} <<-EOF
-
-                    //             # Deploy stack
-                    //             docker service update --image taskimage:${env.BUILD_NUMBER} mytask
-
-                    //             exit
-
-                    //         EOF
-                    //     ''')
                     }
                 }
             }
