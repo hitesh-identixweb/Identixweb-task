@@ -39,7 +39,7 @@ sh('echo "======================="')
                             ssh -o StrictHostKeyChecking=no -i ${SERVER_KEY} ${SERVER_USER}@${SERVER_HOST} <<-EOF
                                 ls -la
                                 pwd
-                        EOF
+                            EOF
 
                             # ssh -o StrictHostKeyChecking=no -i ${SERVER_KEY} ${SERVER_USER}@${SERVER_HOST} ls -la
 
