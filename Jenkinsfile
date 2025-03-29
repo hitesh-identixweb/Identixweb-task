@@ -20,9 +20,13 @@ pipeline {
             steps {
                 script {
 
+
+sh('echoo "=======================')
                     withCredentials([
                         sshUserPrivateKey(credentialsId: "SERVER_USER_KEY",  usernameVariable: 'SERVER_USER', keyFileVariable: 'SERVER_KEY'),
                     ]) {
+
+
 
                         sh ('''
 
