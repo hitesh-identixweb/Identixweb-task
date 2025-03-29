@@ -23,16 +23,18 @@ pipeline {
                     withCredentials([
                         sshUserPrivateKey(credentialsId: 'SERVER_USER_KEY',  usernameVariable: 'SERVER_USER', keyFileVariable: 'SERVER_KEY')
                     ]) {
-                        
+
                         sh( '''
 
                             echo ${SERVER_USER}
                             echo ${SERVER_KEY}
                             echo ${SERVER_HOST}
 
-                            ssh -o StrictHostKeyChecking=no -i ${SERVER_KEY} ${SERVER_USER}@${SERVER_HOST} '
-                                docker service update --image taskimage:${env.BUILD_NUMBER} mytask
-                            '
+                            ssh -o StrictHostKeyChecking=no -i ${SERVER_KEY} ${SERVER_USER}@${SERVER_HOST} "
+                                echo ${env.BUILD_NUMBER}
+                                echo 222222222222222222222222222222222
+                                #docker service update --image taskimage:${env.BUILD_NUMBER} mytask
+                            "
                         '''
                         )
                     }
